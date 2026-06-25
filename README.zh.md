@@ -69,7 +69,7 @@ lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format jso
 
 ## 使用
 
-安装后，Obsidian 左侧栏会出现一个导入按钮。点击按钮，粘贴飞书文档链接即可导入。
+安装后，Obsidian 左侧栏会出现一个导入按钮。点击按钮，粘贴飞书文档链接即可导入。导入窗口会保留在屏幕上，并显示当前步骤、最终笔记路径、图片数量或失败原因。
 
 也可以从命令面板执行：
 

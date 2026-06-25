@@ -70,7 +70,7 @@ The plugin does not handle Feishu authentication itself. It calls your local `la
 
 ## Usage
 
-After installation, click the import icon in the left ribbon and paste a Feishu `docx` or `wiki` URL when prompted.
+After installation, click the import icon in the left ribbon and paste a Feishu `docx` or `wiki` URL when prompted. The import dialog stays open and shows the current step, final note path, image count, or error message.
 
 You can also open the command palette and run the import command.
 

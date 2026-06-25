@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2
+
+- Keep the import dialog open while an import is running.
+- Show import progress, final note path, image count, and error messages in the dialog.
+- Improve the import dialog input layout.
+- Correctly update an existing note when overwrite mode targets an existing path.
+
 ## 0.1.1
 
 - Add a left ribbon icon for importing Feishu documents.

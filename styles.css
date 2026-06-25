@@ -1,4 +1,145 @@
-.feishu-importer-status {
+.feishu-importer-modal {
+	min-width: min(640px, 82vw);
+}
+
+.feishu-importer-form {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.feishu-importer-label {
+	color: var(--text-normal);
+	font-size: var(--font-ui-medium);
+	font-weight: 600;
+}
+
+.feishu-importer-url-row {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+	width: 100%;
+}
+
+.feishu-importer-url-input {
+	flex: 1 1 420px;
+	min-width: 220px;
+	width: 100%;
+}
+
+.feishu-importer-actions {
+	display: flex;
+	flex: 0 0 auto;
+	gap: 8px;
+}
+
+.feishu-importer-actions button {
+	min-width: 72px;
+}
+
+.feishu-importer-help,
+.feishu-importer-status-detail,
+.feishu-importer-log-row {
 	color: var(--text-muted);
 	font-size: var(--font-ui-small);
+	line-height: 1.5;
+}
+
+.feishu-importer-status-panel {
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	margin-top: 16px;
+	overflow: hidden;
+	padding: 12px;
+	position: relative;
+}
+
+.feishu-importer-progress-bar {
+	background: transparent;
+	height: 3px;
+	inset: 0 0 auto;
+	overflow: hidden;
+	position: absolute;
+}
+
+.feishu-importer-status-running .feishu-importer-progress-bar::after {
+	animation: feishu-importer-progress 1.1s ease-in-out infinite;
+	background: var(--interactive-accent);
+	content: "";
+	display: block;
+	height: 100%;
+	width: 42%;
+}
+
+.feishu-importer-status-title {
+	color: var(--text-normal);
+	font-size: var(--font-ui-medium);
+	font-weight: 600;
+	padding-top: 2px;
+}
+
+.feishu-importer-status-success .feishu-importer-status-title {
+	color: var(--text-success);
+}
+
+.feishu-importer-status-error .feishu-importer-status-title {
+	color: var(--text-error);
+}
+
+.feishu-importer-log {
+	border-top: 1px solid var(--background-modifier-border);
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-top: 10px;
+	max-height: 150px;
+	overflow: auto;
+	padding-top: 10px;
+}
+
+.feishu-importer-log:empty {
+	display: none;
+}
+
+.feishu-importer-log-row {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.feishu-importer-log-success {
+	color: var(--text-success);
+}
+
+.feishu-importer-log-error {
+	color: var(--text-error);
+	white-space: normal;
+}
+
+@keyframes feishu-importer-progress {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	100% {
+		transform: translateX(240%);
+	}
+}
+
+@media (max-width: 560px) {
+	.feishu-importer-url-row {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.feishu-importer-url-input {
+		flex-basis: auto;
+		min-width: 0;
+	}
+
+	.feishu-importer-actions {
+		justify-content: flex-end;
+	}
 }
