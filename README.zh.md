@@ -1,4 +1,4 @@
-# Feishu Importer
+# Lark Docs to Obsidian
 
 把飞书 / Lark 云文档导入 Obsidian，并把图片保存到本地 vault。
 
@@ -36,20 +36,20 @@ lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format jso
 
 ```bash
 cd /path/to/your/vault/.obsidian/plugins
-git clone <repository-url> feishu-obsidian-importer
-cd feishu-obsidian-importer
+git clone <repository-url> lark-docs-to-obsidian
+cd lark-docs-to-obsidian
 npm install
 npm run build
 ```
 
-然后在 Obsidian 设置里的 Community plugins 启用 `Feishu Importer`。
+然后在 Obsidian 设置里的 Community plugins 启用 `Lark Docs to Obsidian`。
 
 ## 使用
 
 命令面板里有两个命令：
 
-- `Feishu Importer: Import Feishu document`
-- `Feishu Importer: Refresh current Feishu document`
+- `Lark Docs to Obsidian: Import Lark/Feishu document`
+- `Lark Docs to Obsidian: Refresh current Lark/Feishu document`
 
 导入后的文档会带 frontmatter：
 

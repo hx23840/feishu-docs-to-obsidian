@@ -64,10 +64,10 @@ export default class FeishuImporterPlugin extends Plugin {
 
 		this.addCommand({
 			id: "import-feishu-doc",
-			name: "Import Feishu document",
+			name: "Import Lark/Feishu document",
 			callback: () => {
 				if (Platform.isMobile) {
-					new Notice("Feishu Importer requires desktop Obsidian because it calls lark-cli.");
+					new Notice("Lark Docs to Obsidian requires desktop Obsidian because it calls lark-cli.");
 					return;
 				}
 				new ImportModal(this.app, async (url) => this.importDocument(url)).open();
@@ -76,7 +76,7 @@ export default class FeishuImporterPlugin extends Plugin {
 
 		this.addCommand({
 			id: "refresh-current-feishu-doc",
-			name: "Refresh current Feishu document",
+			name: "Refresh current Lark/Feishu document",
 			checkCallback: (checking) => {
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return false;
@@ -111,7 +111,7 @@ export default class FeishuImporterPlugin extends Plugin {
 		}
 
 		try {
-			new Notice("Importing Feishu document...");
+			new Notice("Importing Lark/Feishu document...");
 			const imported = await this.fetchAndRender(trimmedUrl);
 			const notePath = await this.createNotePath(imported.title);
 			await this.ensureFolder(this.parentFolder(notePath));
@@ -129,7 +129,7 @@ export default class FeishuImporterPlugin extends Plugin {
 
 	private async refreshDocument(file: TFile, sourceUrl: string) {
 		try {
-			new Notice("Refreshing Feishu document...");
+			new Notice("Refreshing Lark/Feishu document...");
 			const imported = await this.fetchAndRender(sourceUrl);
 			await this.app.vault.modify(file, imported.markdown);
 			new Notice(`Refreshed ${file.basename}`);
@@ -147,7 +147,7 @@ export default class FeishuImporterPlugin extends Plugin {
 			throw new Error("lark-cli returned no document content.");
 		}
 
-		const title = extractTitle(rawContent) || document.document_id || "Feishu document";
+		const title = extractTitle(rawContent) || document.document_id || "Lark document";
 		const assets = collectImages(rawContent, this.settings.attachmentFolder);
 		await this.ensureFolder(this.settings.attachmentFolder);
 		await this.downloadImages(assets);
@@ -244,7 +244,7 @@ export default class FeishuImporterPlugin extends Plugin {
 	}
 
 	private async createNotePath(title: string) {
-		const safeTitle = sanitizeFileName(title) || "Feishu document";
+		const safeTitle = sanitizeFileName(title) || "Lark document";
 		const folder = normalizeFolder(this.settings.noteFolder);
 		const basePath = normalizePath(folder ? `${folder}/${safeTitle}.md` : `${safeTitle}.md`);
 
@@ -301,7 +301,7 @@ class ImportModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.createEl("h2", { text: "Import Feishu document" });
+		contentEl.createEl("h2", { text: "Import Lark/Feishu document" });
 
 		new Setting(contentEl)
 			.setName("Document URL")
@@ -351,7 +351,7 @@ class FeishuImporterSettingTab extends PluginSettingTab {
 	display() {
 		const { containerEl } = this;
 		containerEl.empty();
-		containerEl.createEl("h2", { text: "Feishu Importer" });
+		containerEl.createEl("h2", { text: "Lark Docs to Obsidian" });
 
 		new Setting(containerEl)
 			.setName("lark-cli path")

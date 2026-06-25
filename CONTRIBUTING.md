@@ -12,7 +12,7 @@ npm run dev
 Place the repository in an Obsidian vault under:
 
 ```text
-.obsidian/plugins/feishu-obsidian-importer
+.obsidian/plugins/lark-docs-to-obsidian
 ```
 
 Then enable the plugin in Obsidian.

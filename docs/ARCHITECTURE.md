@@ -1,6 +1,6 @@
 # Architecture
 
-Feishu Importer is intentionally split into a small desktop-only MVP.
+Lark Docs to Obsidian is intentionally split into a small desktop-only MVP.
 
 ## Runtime Boundary
 
@@ -17,7 +17,7 @@ Obsidian command
 
 ## Import Flow
 
-1. User runs `Import Feishu document`.
+1. User runs `Import Lark/Feishu document`.
 2. Plugin prompts for a document URL.
 3. Plugin executes:
 
@@ -32,7 +32,7 @@ Obsidian command
 
 ## Refresh Flow
 
-`Refresh current Feishu document` is only available when the active note has `feishu_source` frontmatter.
+`Refresh current Lark/Feishu document` is only available when the active note has `feishu_source` frontmatter.
 
 The refresh operation re-runs the import flow and replaces the current file content.
 
