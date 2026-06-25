@@ -2,6 +2,32 @@
 
 Import Feishu Docs into an Obsidian vault with local images.
 
+## Install With BRAT
+
+This plugin is not in the Obsidian Community Plugins directory yet. The recommended installation path is [BRAT](https://github.com/TfTHacker/obsidian42-brat).
+
+1. Install and enable `Obsidian42 - BRAT` from Obsidian Community Plugins.
+2. Open the command palette and run `BRAT: Add a beta plugin for testing`.
+3. Paste this repository URL:
+
+   ```text
+   https://github.com/hx23840/feishu-docs-to-obsidian
+   ```
+
+4. Enable `飞书文档到 Obsidian` in Obsidian Settings -> Community plugins.
+
+Before importing, make sure `lark-cli` can read your Feishu document from a terminal:
+
+```bash
+lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json
+```
+
+If Obsidian cannot find `lark-cli`, open the plugin settings and set `lark-cli path` to the absolute path, for example:
+
+```text
+/opt/homebrew/bin/lark-cli
+```
+
 This plugin is a desktop-only MVP that wraps the official `lark-cli` workflow:
 
 1. Fetch a Feishu Docs document with `lark-cli docs +fetch`.
@@ -24,26 +50,6 @@ This plugin is a desktop-only MVP that wraps the official `lark-cli` workflow:
 - [`lark-cli`](https://github.com/larksuite/cli) installed and authenticated.
 
 The plugin does not handle Feishu authentication itself. It calls your local `lark-cli`, so access is controlled by the CLI login/session on your machine.
-
-## Quick Start
-
-First make sure `lark-cli` can read your document from a terminal:
-
-```bash
-lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json
-```
-
-If that works, install this plugin in your vault:
-
-```bash
-cd /path/to/your/vault/.obsidian/plugins
-git clone <repository-url> feishu-docs-to-obsidian
-cd feishu-docs-to-obsidian
-npm install
-npm run build
-```
-
-Then enable `飞书文档到 Obsidian` from Obsidian Settings -> Community plugins.
 
 ## Usage
 
@@ -75,12 +81,22 @@ feishu_imported_at: "2026-06-25T00:00:00.000Z"
 
 ## Development
 
+For local development, clone the repository directly into your vault:
+
+```bash
+cd /path/to/your/vault/.obsidian/plugins
+git clone https://github.com/hx23840/feishu-docs-to-obsidian
+cd feishu-docs-to-obsidian
+```
+
+Then install dependencies and build:
+
 ```bash
 npm install
 npm run dev
 ```
 
-For local development, clone the repository directly into:
+The local development path should be:
 
 ```text
 <your-vault>/.obsidian/plugins/feishu-docs-to-obsidian

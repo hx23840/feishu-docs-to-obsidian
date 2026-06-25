@@ -2,6 +2,32 @@
 
 把飞书云文档导入 Obsidian，并把图片保存到本地 vault。
 
+## 使用 BRAT 安装
+
+插件还没有提交到 Obsidian 官方插件市场，当前推荐用 [BRAT](https://github.com/TfTHacker/obsidian42-brat) 安装。
+
+1. 在 Obsidian 社区插件里安装并启用 `Obsidian42 - BRAT`。
+2. 打开命令面板，执行 `BRAT: Add a beta plugin for testing`。
+3. 粘贴这个仓库地址：
+
+   ```text
+   https://github.com/hx23840/feishu-docs-to-obsidian
+   ```
+
+4. 到 Obsidian 设置 -> Community plugins，启用 `飞书文档到 Obsidian`。
+
+导入前先确认本机 `lark-cli` 能读取飞书文档：
+
+```bash
+lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json
+```
+
+如果 Obsidian 找不到 `lark-cli`，在插件设置里把 `lark-cli path` 改成绝对路径，例如：
+
+```text
+/opt/homebrew/bin/lark-cli
+```
+
 这是一个桌面端 MVP 插件，底层复用官方 `lark-cli`：
 
 1. 用 `lark-cli docs +fetch` 读取飞书文档。
@@ -29,20 +55,6 @@ lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format jso
 ```
 
 如果这里没有权限，插件里也不会有权限。插件不绕过飞书权限，只调用本机 `lark-cli`。
-
-## 安装
-
-把仓库放到 vault 的插件目录：
-
-```bash
-cd /path/to/your/vault/.obsidian/plugins
-git clone <repository-url> feishu-docs-to-obsidian
-cd feishu-docs-to-obsidian
-npm install
-npm run build
-```
-
-然后在 Obsidian 设置里的 Community plugins 启用 `飞书文档到 Obsidian`。
 
 ## 使用
 
