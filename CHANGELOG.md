@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3
+
+- Fix image downloads by passing `lark-cli docs +media-preview` a vault-relative output path.
+- Show cleaner `lark-cli` error messages instead of raw JSON.
+- Improve import dialog sizing, wrapping, and status-log scrolling.
+
 ## 0.1.2
 
 - Keep the import dialog open while an import is running.

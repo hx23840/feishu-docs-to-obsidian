@@ -316,20 +316,19 @@ export default class FeishuImporterPlugin extends Plugin {
 				title: "下载图片",
 				detail: `正在下载 ${handled + 1}/${assets.length}：${asset.name}`,
 			});
-			const outputPath = `${vaultBasePath}/${asset.vaultPath}`;
 			await this.runLarkCli([
 				"docs",
 				"+media-preview",
 				"--token",
 				asset.token,
 				"--output",
-				outputPath,
-			]);
+				asset.vaultPath,
+			], { cwd: vaultBasePath });
 			handled += 1;
 		}
 	}
 
-	private async runLarkCli(args: string[]) {
+	private async runLarkCli(args: string[], options: { cwd?: string } = {}) {
 		const env = {
 			...process.env,
 			PATH: [
@@ -344,6 +343,7 @@ export default class FeishuImporterPlugin extends Plugin {
 
 		try {
 			return await execFileAsync(this.settings.larkCliPath, args, {
+				cwd: options.cwd,
 				env,
 				maxBuffer: 50 * 1024 * 1024,
 				timeout: 120_000,
@@ -351,7 +351,7 @@ export default class FeishuImporterPlugin extends Plugin {
 		} catch (error) {
 			const anyError = error as { stderr?: string; stdout?: string; message?: string };
 			const detail = anyError.stderr || anyError.stdout || anyError.message || "Unknown lark-cli error.";
-			throw new Error(detail.trim());
+			throw new Error(formatLarkCliError(detail.trim()));
 		}
 	}
 
@@ -434,6 +434,7 @@ class ImportModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
+		this.modalEl.addClass("feishu-importer-modal-container");
 		contentEl.addClass("feishu-importer-modal");
 		contentEl.createEl("h2", { text: "导入飞书文档" });
 
@@ -543,6 +544,7 @@ class ImportModal extends Modal {
 	}
 
 	onClose() {
+		this.modalEl.removeClass("feishu-importer-modal-container");
 		this.contentEl.empty();
 	}
 }
@@ -750,4 +752,28 @@ function escapeMarkdownAlt(value: string): string {
 
 function messageOf(error: unknown): string {
 	return error instanceof Error ? error.message : String(error);
+}
+
+function formatLarkCliError(detail: string): string {
+	const parsed = parseJsonObject(detail);
+	const error = parsed?.error;
+	if (isRecord(error)) {
+		const message = typeof error.message === "string" ? error.message : detail;
+		const hint = typeof error.hint === "string" ? ` ${error.hint}` : "";
+		return `${message}${hint}`.trim();
+	}
+	return detail;
+}
+
+function parseJsonObject(value: string): Record<string, unknown> | null {
+	try {
+		const parsed = JSON.parse(value);
+		return isRecord(parsed) ? parsed : null;
+	} catch {
+		return null;
+	}
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === "object" && value !== null && !Array.isArray(value);
 }

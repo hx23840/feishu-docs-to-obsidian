@@ -1,5 +1,17 @@
+.feishu-importer-modal-container {
+	max-width: calc(100vw - 32px);
+	width: min(720px, calc(100vw - 32px));
+}
+
 .feishu-importer-modal {
-	min-width: min(640px, 82vw);
+	box-sizing: border-box;
+	min-width: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.feishu-importer-modal h2 {
+	margin-bottom: 16px;
 }
 
 .feishu-importer-form {
@@ -16,15 +28,16 @@
 }
 
 .feishu-importer-url-row {
-	align-items: center;
+	align-items: stretch;
 	display: flex;
 	gap: 8px;
 	width: 100%;
 }
 
 .feishu-importer-url-input {
-	flex: 1 1 420px;
-	min-width: 220px;
+	box-sizing: border-box;
+	flex: 1 1 auto;
+	min-width: 0;
 	width: 100%;
 }
 
@@ -50,7 +63,11 @@
 	background: var(--background-secondary);
 	border: 1px solid var(--background-modifier-border);
 	border-radius: 8px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 	margin-top: 16px;
+	max-height: min(360px, calc(100vh - 260px));
 	overflow: hidden;
 	padding: 12px;
 	position: relative;
@@ -88,14 +105,22 @@
 	color: var(--text-error);
 }
 
+.feishu-importer-status-detail {
+	max-height: 88px;
+	overflow: auto;
+	overflow-wrap: anywhere;
+	white-space: pre-wrap;
+}
+
 .feishu-importer-log {
 	border-top: 1px solid var(--background-modifier-border);
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
 	margin-top: 10px;
-	max-height: 150px;
-	overflow: auto;
+	min-height: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
 	padding-top: 10px;
 }
 
@@ -104,9 +129,11 @@
 }
 
 .feishu-importer-log-row {
+	flex: 0 0 auto;
 	overflow: hidden;
+	overflow-wrap: anywhere;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	white-space: normal;
 }
 
 .feishu-importer-log-success {
@@ -115,7 +142,6 @@
 
 .feishu-importer-log-error {
 	color: var(--text-error);
-	white-space: normal;
 }
 
 @keyframes feishu-importer-progress {
