@@ -64,10 +64,10 @@ export default class FeishuImporterPlugin extends Plugin {
 
 		this.addCommand({
 			id: "import-feishu-doc",
-			name: "Import Lark/Feishu document",
+			name: "导入飞书文档",
 			callback: () => {
 				if (Platform.isMobile) {
-					new Notice("Lark Docs to Obsidian requires desktop Obsidian because it calls lark-cli.");
+					new Notice("飞书文档到 Obsidian 需要桌面端 Obsidian，因为它会调用 lark-cli。");
 					return;
 				}
 				new ImportModal(this.app, async (url) => this.importDocument(url)).open();
@@ -76,7 +76,7 @@ export default class FeishuImporterPlugin extends Plugin {
 
 		this.addCommand({
 			id: "refresh-current-feishu-doc",
-			name: "Refresh current Lark/Feishu document",
+			name: "刷新当前飞书文档",
 			checkCallback: (checking) => {
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return false;
@@ -111,7 +111,7 @@ export default class FeishuImporterPlugin extends Plugin {
 		}
 
 		try {
-			new Notice("Importing Lark/Feishu document...");
+			new Notice("正在导入飞书文档...");
 			const imported = await this.fetchAndRender(trimmedUrl);
 			const notePath = await this.createNotePath(imported.title);
 			await this.ensureFolder(this.parentFolder(notePath));
@@ -129,7 +129,7 @@ export default class FeishuImporterPlugin extends Plugin {
 
 	private async refreshDocument(file: TFile, sourceUrl: string) {
 		try {
-			new Notice("Refreshing Lark/Feishu document...");
+			new Notice("正在刷新飞书文档...");
 			const imported = await this.fetchAndRender(sourceUrl);
 			await this.app.vault.modify(file, imported.markdown);
 			new Notice(`Refreshed ${file.basename}`);
@@ -147,7 +147,7 @@ export default class FeishuImporterPlugin extends Plugin {
 			throw new Error("lark-cli returned no document content.");
 		}
 
-		const title = extractTitle(rawContent) || document.document_id || "Lark document";
+		const title = extractTitle(rawContent) || document.document_id || "飞书文档";
 		const assets = collectImages(rawContent, this.settings.attachmentFolder);
 		await this.ensureFolder(this.settings.attachmentFolder);
 		await this.downloadImages(assets);
@@ -244,7 +244,7 @@ export default class FeishuImporterPlugin extends Plugin {
 	}
 
 	private async createNotePath(title: string) {
-		const safeTitle = sanitizeFileName(title) || "Lark document";
+		const safeTitle = sanitizeFileName(title) || "飞书文档";
 		const folder = normalizeFolder(this.settings.noteFolder);
 		const basePath = normalizePath(folder ? `${folder}/${safeTitle}.md` : `${safeTitle}.md`);
 
@@ -301,11 +301,11 @@ class ImportModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.createEl("h2", { text: "Import Lark/Feishu document" });
+		contentEl.createEl("h2", { text: "导入飞书文档" });
 
 		new Setting(contentEl)
 			.setName("Document URL")
-			.setDesc("Paste a Feishu/Lark docx or wiki link.")
+			.setDesc("粘贴飞书 docx 或 wiki 链接。")
 			.addText((text) => {
 				text.setPlaceholder("https://example.feishu.cn/docx/...")
 					.onChange((value) => {
@@ -351,7 +351,7 @@ class FeishuImporterSettingTab extends PluginSettingTab {
 	display() {
 		const { containerEl } = this;
 		containerEl.empty();
-		containerEl.createEl("h2", { text: "Lark Docs to Obsidian" });
+		containerEl.createEl("h2", { text: "飞书文档到 Obsidian" });
 
 		new Setting(containerEl)
 			.setName("lark-cli path")

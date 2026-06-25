@@ -1,17 +1,17 @@
-# Lark Docs to Obsidian
+# 飞书文档到 Obsidian
 
-Import Feishu/Lark Docs into an Obsidian vault with local images.
+Import Feishu Docs into an Obsidian vault with local images.
 
 This plugin is a desktop-only MVP that wraps the official `lark-cli` workflow:
 
-1. Fetch a Feishu/Lark Docs document with `lark-cli docs +fetch`.
+1. Fetch a Feishu Docs document with `lark-cli docs +fetch`.
 2. Convert the returned document content to Markdown.
 3. Download document images with `lark-cli docs +media-preview`.
 4. Save the note and images inside your vault.
 
 ## Features
 
-- Import a Feishu/Lark Docs `docx` or `wiki` link into a Markdown note.
+- Import a Feishu `docx` or `wiki` link into a Markdown note.
 - Download images into a configurable vault attachment folder.
 - Render images as Obsidian wiki links or portable Markdown links.
 - Add source metadata in frontmatter.
@@ -37,20 +37,20 @@ If that works, install this plugin in your vault:
 
 ```bash
 cd /path/to/your/vault/.obsidian/plugins
-git clone <repository-url> lark-docs-to-obsidian
-cd lark-docs-to-obsidian
+git clone <repository-url> feishu-docs-to-obsidian
+cd feishu-docs-to-obsidian
 npm install
 npm run build
 ```
 
-Then enable `Lark Docs to Obsidian` from Obsidian Settings -> Community plugins.
+Then enable `飞书文档到 Obsidian` from Obsidian Settings -> Community plugins.
 
 ## Usage
 
 Open the command palette and run:
 
-- `Lark Docs to Obsidian: Import Lark/Feishu document`
-- `Lark Docs to Obsidian: Refresh current Lark/Feishu document`
+- `飞书文档到 Obsidian: 导入飞书文档`
+- `飞书文档到 Obsidian: 刷新当前飞书文档`
 
 Imported notes include frontmatter like:
 
@@ -63,7 +63,7 @@ feishu_imported_at: "2026-06-25T00:00:00.000Z"
 ---
 ```
 
-`Refresh current Lark/Feishu document` only appears when the active file has `feishu_source` frontmatter.
+`刷新当前飞书文档` only appears when the active file has `feishu_source` frontmatter.
 
 ## Settings
 
@@ -83,7 +83,7 @@ npm run dev
 For local development, clone the repository directly into:
 
 ```text
-<your-vault>/.obsidian/plugins/lark-docs-to-obsidian
+<your-vault>/.obsidian/plugins/feishu-docs-to-obsidian
 ```
 
 Then reload Obsidian and enable the plugin.
@@ -104,7 +104,7 @@ Release artifacts are:
 
 ## Privacy
 
-This plugin sends document URLs and media tokens only to your local `lark-cli` process. It does not send data to any service other than the Feishu/Lark APIs that `lark-cli` calls.
+This plugin sends document URLs and media tokens only to your local `lark-cli` process. It does not send data to any service other than the Feishu APIs that `lark-cli` calls.
 
 Imported document content and images are stored in your local Obsidian vault.
 

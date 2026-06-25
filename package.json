@@ -1,7 +1,7 @@
 {
-  "name": "lark-docs-to-obsidian",
+  "name": "feishu-docs-to-obsidian",
   "version": "0.1.0",
-  "description": "Import Feishu/Lark Docs into Obsidian with local images via lark-cli.",
+  "description": "Import Feishu Docs into Obsidian with local images via lark-cli.",
   "main": "main.js",
   "private": false,
   "scripts": {
@@ -13,8 +13,8 @@
     "obsidian",
     "obsidian-plugin",
     "feishu",
+    "feishu-docs",
     "lark",
-    "lark-docs",
     "markdown",
     "importer"
   ],

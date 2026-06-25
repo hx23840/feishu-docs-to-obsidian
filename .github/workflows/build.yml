@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: lark-docs-to-obsidian
+          name: feishu-docs-to-obsidian
           path: |
             main.js
             manifest.json

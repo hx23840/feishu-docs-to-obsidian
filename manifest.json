@@ -1,9 +1,9 @@
 {
-  "id": "lark-docs-to-obsidian",
-  "name": "Lark Docs to Obsidian",
+  "id": "feishu-docs-to-obsidian",
+  "name": "飞书文档到 Obsidian",
   "version": "0.1.0",
   "minAppVersion": "1.5.0",
-  "description": "Import Feishu/Lark Docs into Obsidian with local images using lark-cli.",
+  "description": "Import Feishu Docs into Obsidian with local images using lark-cli.",
   "author": "VibeCoding",
   "authorUrl": "",
   "isDesktopOnly": true
