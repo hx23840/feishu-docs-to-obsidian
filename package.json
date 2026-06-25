@@ -19,7 +19,7 @@
     "importer"
   ],
   "author": "VibeCoding",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "files": [
     "main.js",
     "manifest.json",

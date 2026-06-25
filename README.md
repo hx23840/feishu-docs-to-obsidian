@@ -123,4 +123,4 @@ Imported document content and images are stored in your local Obsidian vault.
 
 ## License
 
-MIT
+Apache-2.0

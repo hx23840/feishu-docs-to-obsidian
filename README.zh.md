@@ -81,4 +81,4 @@ feishu_imported_at: "2026-06-25T00:00:00.000Z"
 
 ## 许可证
 
-MIT
+Apache-2.0
