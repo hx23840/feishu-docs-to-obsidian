@@ -16,7 +16,22 @@ This plugin is not in the Obsidian Community Plugins directory yet. The recommen
 
 4. Enable `飞书文档到 Obsidian` in Obsidian Settings -> Community plugins.
 
-Before importing, make sure `lark-cli` can read your Feishu document from a terminal:
+## Dependency: Feishu CLI
+
+This plugin depends on the official Feishu/Lark CLI: [`lark-cli`](https://github.com/larksuite/cli). If you have not installed it yet, run:
+
+```bash
+npx @larksuite/cli@latest install
+```
+
+For first-time use, configure the Feishu app and log in:
+
+```bash
+lark-cli config init --new
+lark-cli auth login --recommend
+```
+
+Then verify that `lark-cli` can read your Feishu document:
 
 ```bash
 lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json

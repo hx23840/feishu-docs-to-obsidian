@@ -16,7 +16,22 @@
 
 4. 到 Obsidian 设置 -> Community plugins，启用 `飞书文档到 Obsidian`。
 
-导入前先确认本机 `lark-cli` 能读取飞书文档：
+## 安装依赖：飞书 CLI
+
+这个插件依赖飞书官方 CLI：[`lark-cli`](https://github.com/larksuite/cli)。如果你还没有安装，先在终端执行：
+
+```bash
+npx @larksuite/cli@latest install
+```
+
+首次使用还需要完成应用配置和登录授权：
+
+```bash
+lark-cli config init --new
+lark-cli auth login --recommend
+```
+
+完成后验证能否读取飞书文档：
 
 ```bash
 lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json
@@ -47,12 +62,6 @@ lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format jso
 
 - Obsidian 桌面端。
 - 已安装并登录 [`lark-cli`](https://github.com/larksuite/cli)。
-
-先在终端确认下面命令能正常返回：
-
-```bash
-lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format json
-```
 
 如果这里没有权限，插件里也不会有权限。插件不绕过飞书权限，只调用本机 `lark-cli`。
 
