@@ -70,9 +70,13 @@ The plugin does not handle Feishu authentication itself. It calls your local `la
 
 ## Usage
 
-Open the command palette and run the import command. Paste a Feishu `docx` or `wiki` URL when prompted.
+After installation, click the import icon in the left ribbon and paste a Feishu `docx` or `wiki` URL when prompted.
+
+You can also open the command palette and run the import command.
 
 For an imported note, open that note and run the refresh command to fetch the latest source content again.
+
+Imported notes also show a refresh action in the file context menu.
 
 Imported notes include frontmatter like:
 

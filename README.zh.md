@@ -69,10 +69,14 @@ lark-cli docs +fetch --doc "https://your-domain.feishu.cn/docx/..." --format jso
 
 ## 使用
 
-命令面板里有两个命令：
+安装后，Obsidian 左侧栏会出现一个导入按钮。点击按钮，粘贴飞书文档链接即可导入。
+
+也可以从命令面板执行：
 
 - `飞书文档到 Obsidian: 导入飞书文档`
 - `飞书文档到 Obsidian: 刷新当前飞书文档`
+
+对于已经导入过的笔记，也可以在文件上右键，选择 `刷新飞书文档`。
 
 导入后的文档会带 frontmatter：
 

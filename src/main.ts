@@ -62,16 +62,14 @@ export default class FeishuImporterPlugin extends Plugin {
 	async onload() {
 		await this.loadSettings();
 
+		this.addRibbonIcon("file-input", "导入飞书文档", () => {
+			this.openImportModal();
+		});
+
 		this.addCommand({
 			id: "import-feishu-doc",
 			name: "导入飞书文档",
-			callback: () => {
-				if (Platform.isMobile) {
-					new Notice("飞书文档到 Obsidian 需要桌面端 Obsidian，因为它会调用 lark-cli。");
-					return;
-				}
-				new ImportModal(this.app, async (url) => this.importDocument(url)).open();
-			},
+			callback: () => this.openImportModal(),
 		});
 
 		this.addCommand({
@@ -81,8 +79,7 @@ export default class FeishuImporterPlugin extends Plugin {
 				const file = this.app.workspace.getActiveFile();
 				if (!file) return false;
 
-				const cache = this.app.metadataCache.getFileCache(file);
-				const source = cache?.frontmatter?.feishu_source;
+				const source = this.getFeishuSource(file);
 				if (!source) return false;
 
 				if (!checking) {
@@ -91,6 +88,22 @@ export default class FeishuImporterPlugin extends Plugin {
 				return true;
 			},
 		});
+
+		this.registerEvent(this.app.workspace.on("file-menu", (menu, file) => {
+			if (!(file instanceof TFile)) return;
+
+			const source = this.getFeishuSource(file);
+			if (!source) return;
+
+			menu.addItem((item) => {
+				item
+					.setTitle("刷新飞书文档")
+					.setIcon("refresh-cw")
+					.onClick(() => {
+						void this.refreshDocument(file, source);
+					});
+			});
+		}));
 
 		this.addSettingTab(new FeishuImporterSettingTab(this.app, this));
 	}
@@ -101,6 +114,20 @@ export default class FeishuImporterPlugin extends Plugin {
 
 	async saveSettings() {
 		await this.saveData(this.settings);
+	}
+
+	private openImportModal() {
+		if (Platform.isMobile) {
+			new Notice("飞书文档到 Obsidian 需要桌面端 Obsidian，因为它会调用 lark-cli。");
+			return;
+		}
+		new ImportModal(this.app, async (url) => this.importDocument(url)).open();
+	}
+
+	private getFeishuSource(file: TFile): string | null {
+		const cache = this.app.metadataCache.getFileCache(file);
+		const source = cache?.frontmatter?.feishu_source;
+		return typeof source === "string" && source.trim() ? source : null;
 	}
 
 	private async importDocument(url: string) {

@@ -1,6 +1,6 @@
 {
   "name": "feishu-docs-to-obsidian",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Import Feishu Docs into Obsidian with local images via lark-cli.",
   "main": "main.js",
   "private": false,

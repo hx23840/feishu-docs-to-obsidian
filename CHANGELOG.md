@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Add a left ribbon icon for importing Feishu documents.
+- Add a file menu refresh action for imported notes.
+
 ## 0.1.0
 
 - Initial desktop-only Obsidian plugin.
