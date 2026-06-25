@@ -1,5 +1,7 @@
 # 飞书文档到 Obsidian
 
+[English](./README.md)
+
 把飞书云文档导入 Obsidian，并把图片保存到本地 vault。
 
 ## 使用 BRAT 安装

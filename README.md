@@ -1,4 +1,6 @@
-# 飞书文档到 Obsidian
+# Feishu Docs to Obsidian
+
+[Chinese](./README.zh.md)
 
 Import Feishu Docs into an Obsidian vault with local images.
 
@@ -14,7 +16,7 @@ This plugin is not in the Obsidian Community Plugins directory yet. The recommen
    https://github.com/hx23840/feishu-docs-to-obsidian
    ```
 
-4. Enable `飞书文档到 Obsidian` in Obsidian Settings -> Community plugins.
+4. Enable this plugin from Obsidian Settings -> Community plugins.
 
 ## Dependency: Feishu CLI
 
@@ -68,10 +70,9 @@ The plugin does not handle Feishu authentication itself. It calls your local `la
 
 ## Usage
 
-Open the command palette and run:
+Open the command palette and run the import command. Paste a Feishu `docx` or `wiki` URL when prompted.
 
-- `飞书文档到 Obsidian: 导入飞书文档`
-- `飞书文档到 Obsidian: 刷新当前飞书文档`
+For an imported note, open that note and run the refresh command to fetch the latest source content again.
 
 Imported notes include frontmatter like:
 
@@ -84,7 +85,7 @@ feishu_imported_at: "2026-06-25T00:00:00.000Z"
 ---
 ```
 
-`刷新当前飞书文档` only appears when the active file has `feishu_source` frontmatter.
+The refresh command is available only when the active file has `feishu_source` frontmatter.
 
 ## Settings
 
