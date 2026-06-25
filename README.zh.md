@@ -95,7 +95,7 @@ feishu_imported_at: "2026-06-25T00:00:00.000Z"
 
 - `lark-cli path`：默认 `lark-cli`。如果 Obsidian 找不到命令，填绝对路径，比如 `/opt/homebrew/bin/lark-cli`。
 - `Note folder`：导入笔记保存目录，留空代表 vault 根目录。
-- `Attachment folder`：图片保存目录。
+- `Attachment folder`：图片保存根目录。每篇导入文档会按标题创建独立子目录。
 - `Image link style`：Obsidian wiki link 或普通 Markdown link。
 - `Overwrite existing files`：是否覆盖同名文件。
 

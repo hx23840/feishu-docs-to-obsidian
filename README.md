@@ -95,7 +95,7 @@ The refresh command is available only when the active file has `feishu_source` f
 
 - `lark-cli path`: defaults to `lark-cli`. Use an absolute path if Obsidian cannot find it, for example `/opt/homebrew/bin/lark-cli`.
 - `Note folder`: where imported notes are created. Empty means vault root.
-- `Attachment folder`: where images are saved.
+- `Attachment folder`: root folder for images. Each imported document gets its own title-based subfolder.
 - `Image link style`: Obsidian wiki links or Markdown links.
 - `Overwrite existing files`: replace existing images/notes when paths match.
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4
+
+- Save document images under a title-based subfolder inside the attachment folder.
+
 ## 0.1.3
 
 - Fix image downloads by passing `lark-cli docs +media-preview` a vault-relative output path.

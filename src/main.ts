@@ -231,15 +231,16 @@ export default class FeishuImporterPlugin extends Plugin {
 		}
 
 		const title = extractTitle(rawContent) || document.document_id || "飞书文档";
-		const assets = collectImages(rawContent, this.settings.attachmentFolder);
+		const imageFolder = documentImageFolder(this.settings.attachmentFolder, title);
+		const assets = collectImages(rawContent, imageFolder);
 		progress?.({
 			state: "running",
 			title: "处理图片",
 			detail: assets.length > 0
-				? `发现 ${assets.length} 张图片，正在下载到 ${normalizeFolder(this.settings.attachmentFolder) || DEFAULT_SETTINGS.attachmentFolder}。`
+				? `发现 ${assets.length} 张图片，正在下载到 ${imageFolder}。`
 				: "没有发现需要下载的图片。",
 		});
-		await this.ensureFolder(this.settings.attachmentFolder);
+		await this.ensureFolder(imageFolder);
 		await this.downloadImages(assets, progress);
 
 		const body = convertFeishuHtmlToMarkdown(rawContent, assets, this.settings.imageLinkStyle);
@@ -616,8 +617,8 @@ class FeishuImporterSettingTab extends PluginSettingTab {
 	}
 }
 
-function collectImages(rawContent: string, attachmentFolder: string): ImageAsset[] {
-	const folder = normalizeFolder(attachmentFolder) || DEFAULT_SETTINGS.attachmentFolder;
+function collectImages(rawContent: string, imageFolder: string): ImageAsset[] {
+	const folder = normalizeFolder(imageFolder) || DEFAULT_SETTINGS.attachmentFolder;
 	const seen = new Map<string, number>();
 
 	return [...rawContent.matchAll(/<img\b[^>]*\/?>/g)].map((match, index) => {
@@ -634,6 +635,12 @@ function collectImages(rawContent: string, attachmentFolder: string): ImageAsset
 			vaultPath: normalizePath(`${folder}/${safeName}`),
 		};
 	});
+}
+
+function documentImageFolder(attachmentFolder: string, title: string): string {
+	const root = normalizeFolder(attachmentFolder) || DEFAULT_SETTINGS.attachmentFolder;
+	const documentFolder = sanitizeFileName(title) || "飞书文档";
+	return normalizePath(`${root}/${documentFolder}`);
 }
 
 function convertFeishuHtmlToMarkdown(
