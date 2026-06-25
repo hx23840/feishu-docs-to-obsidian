@@ -12,18 +12,20 @@
    ```
 
 3. Commit the version bump.
-4. Create a Git tag:
+4. Create and push a Git tag:
 
    ```bash
-   git tag 0.1.0
+   git tag v0.1.0
    git push origin main --tags
    ```
 
-5. Attach these files to the GitHub release:
+5. GitHub Actions will create a release and attach these files:
 
    - `main.js`
    - `manifest.json`
    - `styles.css`
+
+BRAT installs the plugin from these release assets.
 
 ## Obsidian Community Plugin Submission
 
